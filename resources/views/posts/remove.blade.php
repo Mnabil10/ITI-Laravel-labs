@@ -2,7 +2,7 @@
 
 @section('title') Update @endsection
 @section('content')
-        <form method="POST" action="{{route('posts.delete')}}">
+        <form method="POST" action="{{route('posts.delete', $postid)}}">
         @method("delete")
         @csrf
         <div class="card shadow" style="width: 18rem;">

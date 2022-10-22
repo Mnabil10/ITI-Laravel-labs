@@ -37,17 +37,17 @@ class PostController extends Controller
     {
         dd('we are storing the data');
     }
-    public function edit()
+    public function edit($postid)
     {
-        return view('posts.edit');
+        return view('posts.edit',['postid'=>$postid]);
     }
     public function update()
     {
         return "Your data updated";
     }
-    public function remove()
+    public function remove($postid)
     {
-        return view('posts.remove');
+        return view('posts.remove',['postid'=>$postid]);
     }
     public function delete()
     {
