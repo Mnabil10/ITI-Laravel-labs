@@ -37,4 +37,20 @@ class PostController extends Controller
     {
         dd('we are storing the data');
     }
+    public function edit()
+    {
+        return view('posts.edit');
+    }
+    public function update()
+    {
+        return "Your data updated";
+    }
+    public function remove()
+    {
+        return view('posts.remove');
+    }
+    public function delete()
+    {
+        return "Your data deleted";
+    }
 }
