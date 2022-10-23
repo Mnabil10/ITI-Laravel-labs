@@ -19,11 +19,37 @@
             </div>
             <div class="w-100 bg-white border">
                 <div class="100 bg-white mt-2 mb-2">
-                Name: {{$user->name}} <br>
-                Email:{{$user->email}} <br>
-                Created At : {{$post->created_at}}
+                Name: {{$post->user->name}} <br>
+                Email:{{$post->user->email}} <br>
+                Created At : {{$post->user ?  $post->created_at->format('Y-m-d')  : 'Not Defined'}}
                 </div>
             </div>
-        </div>
+
+            <form action="{{route('comments.store',$post->id)}}" method="POST">
+
+  @csrf
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label"> <b>New Comment</b> </label>
+    <input name="comment" type="text" class="form-control" id="exampleInputEmail1"
+      aria-describedby="emailHelp">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
+<table class="table mt-4">
+	<thead>
+		<tr>
+			<th scope="col">Comments</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach ($comments as $comment)
+		<tr>
+			<td> {{$comment->body}}</td>
+		</tr>
+		@endforeach
+	</tbody>
+</table>
 @endsection
 

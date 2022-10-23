@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -28,17 +29,13 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($postid)
+    public function show($postId)
     {
 
-
-        $post = Post::find($postid);
-        $userid = $post->user_id;
-        $user = User::find($userid) ;
-        return view('posts.show',[
-            'post' => $post
-        ],['postid'=>$postid,
-            'user'=>$user]);
+        $post = Post::find($postId);
+        $comments = Comment::where('commentable_type', 'App\Models\Post')->where('commentable_id',$postId)->get();
+        return view('posts.show', ['post' => $post ,"comments"=> $comments]);
+        ;
     }
 
     public function store()
