@@ -17,19 +17,28 @@
   </thead>
   <tbody>
     @foreach ($posts as $post)
-      <tr>
+    <tr>
         <td>{{$post['id']}}</th>
-        <td>{{$post['title']}}</td>
-        <td>{{$post['posted_by']}}</td>
-        <td>{{$post['creation_date']}}</td>
+        <td>{{$post->title}}</td>
+        @if($post->user)
+          <td>{{$post->user->name}}</td>
+        @else
+          <td>Not Defined</td>
+        @endif
+        <td>{{$post->created_at}}</td>
         <td>
             <a href="{{route('posts.show', $post['id'])}}" class="btn btn-info">View</a>
             <!-- {{-- <a href="{{route('posts.show', ['post' =>$post['id']])}}" class="btn btn-info">View</a> --}} -->
             <a href="{{route('posts.edit', $post['id'])}}" class="btn btn-primary">Edit</a>
-            <a href="{{route('posts.remove', $post['id'])}}" class="btn btn-danger">Delete</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                 Delete
+            </button>
+
         </td>
       </tr>
+
     @endforeach
+
   </tbody>
 </table>
 @endsection
