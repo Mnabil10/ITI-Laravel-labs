@@ -5,20 +5,22 @@
         <form method="POST" action="{{route('posts.update', $postid)}}">
         @method("put")
         @csrf
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Title</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input name="title" type="text" class="form-control"  >
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Description</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label  class="form-label">Description</label>
+                <textarea name="description" class="form-control"></textarea>
               </div>
 
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Post Creator</label>
-                <select class="form-control">
-                    <option>Ahmed</option>
+                <select name="post_creator" class="form-control">
+                  @foreach ($allUsers as $user)
+                    <option value="{{$user->id}}">{{ $user->name }}</option>
+                  @endforeach
                 </select>
               </div>
 

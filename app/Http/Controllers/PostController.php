@@ -76,17 +76,26 @@ class PostController extends Controller
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
         ]); //insert into posts ('ahmed','asdasd')
-
         return to_route('posts.index');
     }
 
     public function edit($postid)
     {
-        return view('posts.edit',['postid'=>$postid]);
+        $allUsers = User::all();
+
+        return view('posts.edit',[
+            'allUsers' => $allUsers
+        ],['postid'=>$postid]);
     }
-    public function update()
+    public function update(Request $request, $id)
     {
-        return "Your data updated";
+        request()->all();
+        $requiredPost = Post::find($id);
+        $requiredPost->title = request()->title;
+        $requiredPost->description = request()->description;
+        $requiredPost->user_id = request()->post_creator;
+        $requiredPost->save();
+        return to_route('posts.index');
     }
     public function remove($postid)
     {
