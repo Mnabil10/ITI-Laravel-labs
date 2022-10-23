@@ -97,12 +97,12 @@ class PostController extends Controller
         $requiredPost->save();
         return to_route('posts.index');
     }
-    public function remove($postid)
+
+
+    public function destroy($postid)
     {
-        return view('posts.remove',['postid'=>$postid]);
+        $post = post::find($postid);
+        $post->delete();
+        return to_route('posts.index');
     }
-    // public function destroy($postid)
-    // {
-    //     return "Your data deleted";
-    // }
 }
