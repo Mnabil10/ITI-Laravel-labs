@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Show @endsection
+@section('title')Post {{$post->id}} @endsection
 @section('content')
 <div class=" card shadow row container ">
             <div class="w-100 bg-light  mt-2 border">

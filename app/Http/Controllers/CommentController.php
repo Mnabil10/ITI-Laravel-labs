@@ -15,6 +15,7 @@ class CommentController extends Controller
             $comment = $post->comments()->create([
                 'body' => $data["comment"]
             ]);
-        return redirect()->route('posts.show',$postId,$comment);
+        // dd()
+        return redirect()->route('posts.show',$postId);
     }
 }
