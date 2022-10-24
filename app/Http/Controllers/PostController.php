@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
-use App\Http\Controllers\CommentController;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -39,7 +39,7 @@ class PostController extends Controller
         ;
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
 
         $data = request()->all();
@@ -82,4 +82,5 @@ class PostController extends Controller
         $post->delete();
         return to_route('posts.index');
     }
+
 }

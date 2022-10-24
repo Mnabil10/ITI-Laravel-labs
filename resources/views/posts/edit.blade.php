@@ -8,6 +8,9 @@
         <div class="mb-3">
               <label class="form-label">Title</label>
               <input name="title" type="text" class="form-control"  >
+              @error('title')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
             </div>
 
             <div class="mb-3">
