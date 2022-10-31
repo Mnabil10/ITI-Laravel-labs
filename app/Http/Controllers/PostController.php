@@ -64,7 +64,7 @@ class PostController extends Controller
             'allUsers' => $allUsers
         ],['postid'=>$postid]);
     }
-    public function update(Request $request, $id)
+    public function update(StorePostRequest  $request, $id )
     {
         request()->all();
         $requiredPost = Post::find($id);
